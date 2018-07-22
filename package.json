@@ -10,6 +10,7 @@
     "start": "node index.js",
     "poststart": "npm-run-all -s build server",
     "server": "npm-run-all --parallel server:*",
+    "server3": "babel-node ./scripts/server3.js",
     "server:create": "cross-var http-server dist/$npm_package_version -p $npm_package_config_port",
     "server:launch": "cross-var opn http://localhost:$npm_package_config_port",
     "watch": "npm-run-all --parallel watch:*",
@@ -17,6 +18,8 @@
     "watch:lint": "onchange **/*.js **/*.scss -- npm run lint",
     "pretest": "npm run lint",
     "test": "cross-env BABEL_ENV=test mocha ./tests --require babel-register",
+    "test2": "./scripts/test2.sh",
+    "test3": "babel-node ./scripts/test3.js",
     "coverage": "nyc --reporter=html npm run test",
     "postcoverage": "rimraf .nyc_output",
     "coverage:open": "opn coverage/index.html",
@@ -28,6 +31,8 @@
     "build:html": "cross-var pug --obj data.json src/index.pug --out dist/$npm_package_version/",
     "build:css": "cross-var \"node-sass scss/style.scss | cssmin > dist/$npm_package_version/style.css\"",
     "build:js": "cross-var \"mustache data.json src/index.mustache | uglifyjs > dist/$npm_package_version/index.js\"",
+    "build2": "./scripts/build2.sh",
+    "build3": "babel-node ./scripts/build3.js",
     "prepush": "npm run lint"
   },
   "author": "Ignacio Cruz <igmoweb@gmail.com>",
@@ -37,6 +42,8 @@
     "npm-run-all": "^4.1.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-espower": "^2.4.0",
     "babel-register": "^6.26.0",
     "cross-env": "^5.2.0",
     "cross-var": "^1.1.0",
@@ -57,6 +64,7 @@
     "postcss-cli": "^6.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^2.6.2",
+    "shelljs": "^0.8.2",
     "stylelint": "^9.3.0",
     "stylelint-config-standard": "^18.2.0",
     "uglify-js": "^3.4.5"
