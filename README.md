@@ -17,3 +17,5 @@ These packages are used to run different things under any system (Windows/Mac/Li
 - `rimraf`: Delete folders
 - `cross-var`: Reference npm package variables. Because some `build:*` tasks are using piping, we need to wrap the whole commands inside double quotes to make `cross-var` work.
 - `opn-cli`: Open a URL in the browser
+
+Switch to branch `with-nps` to see the tasks splitted in `package-scripts.js` by using `nps` package.
